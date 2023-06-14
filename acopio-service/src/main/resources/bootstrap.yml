@@ -1,7 +1,7 @@
 spring:
   devtools:
     restart:
-      aditional-paths: src/main/java
+      additional-paths: src/main/java
   application:
     name: acopio-service
   cloud:
@@ -9,7 +9,6 @@ spring:
       enabled: true
       uri: http://localhost:8081
   datasource:
-    # El driver es de postgreSQL
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/acopio?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
     username: postgres
