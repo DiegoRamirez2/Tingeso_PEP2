@@ -38,6 +38,7 @@ public class ProveedorController {
         return ResponseEntity.ok(proveedor);
     }
     @PostMapping
+    @CrossOrigin("*")
     public ResponseEntity<ProveedorEntity> saveProveedor(@RequestBody ProveedorEntity proveedor) {
         if(proveedorService.findByCodigo(proveedor.getIdProveedor()) != null) {
             return ResponseEntity.badRequest().build();

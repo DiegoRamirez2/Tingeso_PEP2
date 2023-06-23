@@ -7,6 +7,7 @@ import ProveedorComponent from './components/ProveedorComponent';
 import LaboratorioUploadComponent from './components/LaboratorioUploadComponent';
 import LaboratorioInformationComponent from './components/LaboratorioInformationComponent';
 import CalcularPagosComponent from './components/CalcularPagosComponent';
+import NuevoProveedorComponent from './components/NuevoProveedorComponent';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<HomeComponent />} />
           <Route path="/subir-acopio" element={<AcopioUploadComponent />} />
           <Route path="/info-acopio" element={<AcopioInformationComponent />} />
+          <Route path="/registrar-proveedor" element={<NuevoProveedorComponent />} />
           <Route path="/lista-proveedores" element={<ProveedorComponent />} />
           <Route path="/subir-laboratorio" element={<LaboratorioUploadComponent />} />
           <Route path="/info-laboratorio" element={<LaboratorioInformationComponent />} />

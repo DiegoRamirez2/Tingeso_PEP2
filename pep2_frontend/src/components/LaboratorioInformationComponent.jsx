@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import NavbarComponent2 from "./NavbarComponent2";
+import NavbarComponent5 from "./NavbarComponent5";
 
 class LaboratorioInformationComponent extends Component{
     constructor(props) {
@@ -18,7 +18,7 @@ class LaboratorioInformationComponent extends Component{
     render(){
         return(
             <div className="home">
-                <NavbarComponent2 />
+                <NavbarComponent5 />
                 <Styles>
                 <h1 className="text-center"> <b>Información de Laboratorio</b></h1>
                     <div className="f">

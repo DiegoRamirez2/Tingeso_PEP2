@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavbarComponent3 from "./NavbarComponent3";
+import NavbarComponent6 from "./NavbarComponent6";
 import styled from "styled-components";
 
 class ProveedorComponent extends Component{
@@ -19,7 +19,7 @@ class ProveedorComponent extends Component{
     render(){
         return(
             <div className="home">
-                <NavbarComponent3 />
+                <NavbarComponent6 />
                 <Styles>
                 <h1 className="text-center"> <b>Listado de Proveedores</b></h1>
                     <div className="f">

@@ -1,0 +1,176 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-service
+  template:
+    metadata:
+      labels:
+        app: config-service
+    spec:
+      containers:
+        - name: config-service
+          image: ijynx1/config-service:latest
+          ports:
+            - containerPort: 8006
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eureka-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eureka-service
+  template:
+    metadata:
+      labels:
+        app: eureka-service
+    spec:
+      containers:
+        - name: eureka-service
+          image: ijynx1/eureka-service:latest
+          env:
+            - name: status.podIP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          ports:
+            - containerPort: 8761
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acopio-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: acopio-service
+  template:
+    metadata:
+      labels:
+        app: acopio-service
+    spec:
+      containers:
+        - name: acopio-service
+          image: ijynx1/acopio-service:latest
+          ports:
+            - containerPort: 8001
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-acopio:5432/tingeso
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proveedor-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proveedor-service
+  template:
+    metadata:
+      labels:
+        app: proveedor-service
+    spec:
+      containers:
+        - name: proveedor-service
+          image: ijynx1/proveedor-service:latest
+          ports:
+            - containerPort: 8002
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-proveedor:5432/tingeso
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laboratorio-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laboratorio-service
+  template:
+    metadata:
+      labels:
+        app: laboratorio-service
+    spec:
+      containers:
+        - name: laboratorio-service
+          image: ijynx1/laboratorio-service:latest
+          ports:
+            - containerPort: 8003
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-laboratorio:5432/tingeso
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pago-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pago-service
+  template:
+    metadata:
+      labels:
+        app: pago-service
+    spec:
+      containers:
+        - name: pago-service
+          image: ijynx1/pago-service:latest
+          ports:
+            - containerPort: 8004
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-pago:5432/tingeso
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+    spec:
+      containers:
+        - name: gateway-service
+          image: ijynx1/gateway-service:latest
+          ports:
+            - containerPort: 8007
