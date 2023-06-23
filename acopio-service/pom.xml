@@ -91,6 +91,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>acopio-service</finalName>
 	</build>
 
 </project>
