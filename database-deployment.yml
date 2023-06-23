@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-tingeso
+  labels:
+    app: postgres-tingeso
+spec:
+  selector:
+    matchLabels:
+      app: postgres-tingeso
+  template:
+    metadata:
+      labels:
+        app: postgres-tingeso
+    spec:
+      containers:
+        - name: postgres-tingeso
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+            - name: POSTGRES_DB
+              value: "tingeso"
+          volumeMounts:
+            - name: postgres-tingeso-persistent-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-tingeso-persistent-storage
+          persistentVolumeClaim:
+            claimName: postgres-tingeso-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-tingeso-pv-claim
+  labels:
+    app: postgres-tingeso
+    tier: database
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-tingeso
+  labels:
+    app: postgres-tingeso
+spec:
+  ports:
+    - port: 5432
+      targetPort: 5432
+  selector:
+    app: postgres-tingeso
+  clusterIP: None
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tingeso-db
+data:
+  name: "tingeso"
