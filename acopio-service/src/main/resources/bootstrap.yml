@@ -1,7 +1,4 @@
 spring:
-  devtools:
-    restart:
-      additional-paths: src/main/java
   application:
     name: acopio-service
   cloud:
@@ -9,12 +6,20 @@ spring:
       enabled: true
       uri: http://config-service:8081
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/tingeso?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:postgresql://localhost:5432/acopio
     username: postgres
     password: 1234
   jpa:
-    show-sql: true
     hibernate:
-      dialect: PostgreSQL9Dialect
-      ddl-auto: create-drop
+      ddl-auto: update
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-client:8761/eureka/

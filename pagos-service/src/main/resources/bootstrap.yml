@@ -1,21 +1,22 @@
 spring:
-  devtools:
-    restart:
-      aditional-paths: src/main/java
+  config:
+    import: optional:configserver:http://config-service:8081
   application:
-    name: pagos-service
+    name: pago-service
   cloud:
     config:
       enabled: true
       uri: http://config-service:8081
   datasource:
-    # El driver es de postgreSQL
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/tingeso?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:postgresql://localhost:5432/pago?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     username: postgres
     password: 1234
   jpa:
-    show-sql: true
     hibernate:
-      dialect: PostgreSQL9Dialect
+      dialect: org.hibernate.dialect.PostgreSQLDialect
       ddl-auto: create-drop
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
