@@ -256,9 +256,6 @@ public class PagosService {
     }
     public void calcularPagos(LocalDate fecha){
         List<String> proveedores = getProveedores();
-        if(fecha.getDayOfMonth() == 2){
-            fecha = fecha.plusDays(14);
-        }
         for(String idProveedor : proveedores){
             calcularPago(idProveedor, fecha);
         }

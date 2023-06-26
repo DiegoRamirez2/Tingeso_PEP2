@@ -65,7 +65,7 @@ spec:
             - containerPort: 8001
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-acopio:5432/tingeso
+              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -93,7 +93,7 @@ spec:
             - containerPort: 8002
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-proveedor:5432/tingeso
+              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -121,7 +121,7 @@ spec:
             - containerPort: 8003
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-laboratorio:5432/tingeso
+              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
@@ -131,25 +131,25 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pago-service
+  name: pagos-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: pago-service
+      app: pagos-service
   template:
     metadata:
       labels:
-        app: pago-service
+        app: pagos-service
     spec:
       containers:
-        - name: pago-service
-          image: ijynx1/pago-service:latest
+        - name: pagos-service
+          image: ijynx1/pagos-service:latest
           ports:
             - containerPort: 8004
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-pago:5432/tingeso
+              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
