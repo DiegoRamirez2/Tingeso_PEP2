@@ -10,7 +10,7 @@ class CalcularPagosComponent extends Component{
         }
       }
       handleCalcularPagos = () => {
-        fetch("http://localhost:8080/pagos")
+        fetch("http://127.0.0.1:12880/pagos")
         .then(response => response.json())
         .then((data) => this.setState({pagos: data}));
       };

@@ -9,12 +9,13 @@ spring:
       enabled: true
       uri: http://config-service:8081
   datasource:
-    url: jdbc:postgresql://localhost:5432/proveedor
+    url: jdbc:postgresql://localhost:5432/proveedor?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     username: postgres
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: create-drop
 management:
   endpoints:
     web:

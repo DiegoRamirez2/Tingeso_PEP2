@@ -1,52 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-service
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: config-service
-  template:
-    metadata:
-      labels:
-        app: config-service
-    spec:
-      containers:
-        - name: config-service
-          image: ijynx1/config-service:latest
-          ports:
-            - containerPort: 8006
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: eureka-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: eureka-service
-  template:
-    metadata:
-      labels:
-        app: eureka-service
-    spec:
-      containers:
-        - name: eureka-service
-          image: ijynx1/eureka-service:latest
-          env:
-            - name: status.podIP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-          ports:
-            - containerPort: 8761
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: acopio-service
 spec:
   replicas: 1
@@ -62,15 +16,14 @@ spec:
         - name: acopio-service
           image: ijynx1/acopio-service:latest
           ports:
-            - containerPort: 8001
+            - containerPort: 8083
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
+              value: jdbc:postgresql://postgres-acopio:5432/acopio
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "1234"
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -90,15 +43,14 @@ spec:
         - name: proveedor-service
           image: ijynx1/proveedor-service:latest
           ports:
-            - containerPort: 8002
+            - containerPort: 8082
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
+              value: jdbc:postgresql://postgres-proveedor:5432/proveedor
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "1234"
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -118,15 +70,14 @@ spec:
         - name: laboratorio-service
           image: ijynx1/laboratorio-service:latest
           ports:
-            - containerPort: 8003
+            - containerPort: 8084
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
+              value: jdbc:postgresql://postgres-laboratorio:5432/laboratorio
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "1234"
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -146,31 +97,12 @@ spec:
         - name: pagos-service
           image: ijynx1/pagos-service:latest
           ports:
-            - containerPort: 8004
+            - containerPort: 8085
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres-tingeso:5432/tingeso
+              value: jdbc:postgresql://postgres-pagos:5432/pagos
             - name: SPRING_DATASOURCE_USERNAME
               value: "postgres"
             - name: SPRING_DATASOURCE_PASSWORD
               value: "1234"
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: gateway-service
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: gateway-service
-  template:
-    metadata:
-      labels:
-        app: gateway-service
-    spec:
-      containers:
-        - name: gateway-service
-          image: ijynx1/gateway-service:latest
-          ports:
-            - containerPort: 8007

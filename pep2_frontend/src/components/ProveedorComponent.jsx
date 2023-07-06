@@ -11,7 +11,7 @@ class ProveedorComponent extends Component{
     }
 
     componentDidMount(){
-        fetch("http://localhost:8080/proveedor")
+        fetch("http://127.0.0.1:12880/proveedor")
         .then((response) => response.json())
         .then((data) => this.setState({ proveedores: data }));
     }

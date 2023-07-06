@@ -10,7 +10,7 @@ class AcopioInformationComponent extends Component{
         }
     }
     componentDidMount(){
-        fetch("http://localhost:8080/acopio")
+        fetch("http://127.0.0.1:12880/acopio")
         .then(response => response.json())
         .then((data) => this.setState({acopio: data}));
     }

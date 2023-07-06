@@ -10,7 +10,7 @@ class LaboratorioInformationComponent extends Component{
         }
     }
     componentDidMount(){
-        fetch("http://localhost:8080/laboratorio")
+        fetch("http://127.0.0.1:12880/laboratorio")
         .then(response => response.json())
         .then((data) => this.setState({laboratorio: data}));
     }

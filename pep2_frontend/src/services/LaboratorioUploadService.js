@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/laboratorio";
+const API_URL = "http://127.0.0.1:12880/laboratorio";
 
 class LaboratorioUploadService {
     CargarArchivo(file) {

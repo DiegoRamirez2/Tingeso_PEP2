@@ -5,7 +5,3 @@ spring:
     config:
       enabled: true
       uri: http://config-service:8081
-eureka:
-  instance:
-    hostname: 10.106.55.50
-    prefer-ip-address: true

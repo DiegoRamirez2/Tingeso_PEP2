@@ -50,17 +50,6 @@ public class LaboratorioService {
     public Double porcentajeSolidosByProveedor(Integer idProveedor) {
         return laboratorioRepository.findByProveedorId(idProveedor).getPorcentajeSolidosTotales();
     }
-
-    // Es posible que esto no sea necesario, sino que se llame desde el propio microservicio de proveedor
-    //    public String getRetencionByProveedor(Integer idProveedor) {
-    //        return findProveedor(idProveedor).getRetencion();
-    //    }
-    //    public String getNombreByProveedor(Integer idProveedor) {
-    //        return findProveedor(idProveedor).getNombre();
-    //    }
-    //    public String getCategoriaByProveedor(Integer idProveedor) {
-    //        return findProveedor(idProveedor).getCategoria();
-    //    }
     public LaboratorioEntity guardarData(LaboratorioEntity laboratorio) {
         laboratorioRepository.save(laboratorio);
         return laboratorio;
